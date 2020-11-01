@@ -1,0 +1,10 @@
+spring.jpa.hibernate.ddl-auto = create # create, none , validate , update , create-drop
+spring.jpa.show-sql = false
+spring.datasource.url = jdbc:mysql://localhost:3306/snitch?userSSL=false&userUnicode=true&characterEncoding=utf8&serverTimezone=UTC // w innych bazach niz mysql pewnie to inaczej wylada
+spring.datasource.username = snitch
+spring.datasource.password = snitch
+
+create database snitch;
+create user 'snitch'@'localhost' identified by 'snitch';
+grant all privileges on snitch.* to 'snitch'@'localhost' identified by 'snitch';
+
