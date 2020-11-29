@@ -1,6 +1,7 @@
 package com.snitch.entities.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -11,7 +12,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String position;
+
+    @OneToMany(mappedBy = "snitchId")
+    private List<Snitch> snitchList;
+
+    @OneToMany(mappedBy = "victimId")
+    private List<Snitch> victimList;
 
     public Employee(){
     }
@@ -23,11 +32,43 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public List<Snitch> getSnitchList() {
+        return snitchList;
+    }
+
+    public void setSnitchList(List<Snitch> snitchList) {
+        this.snitchList = snitchList;
+    }
+
+    public List<Snitch> getVictimList() {
+        return victimList;
+    }
+
+    public void setVictimList(List<Snitch> victimList) {
+        this.victimList = victimList;
     }
 }
