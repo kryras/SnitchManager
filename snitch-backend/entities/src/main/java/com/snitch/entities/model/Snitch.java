@@ -18,7 +18,10 @@ public class Snitch {
 
     @ManyToOne(fetch = FetchType.LAZY, optional =false)
     private SnitchType snitchType;
-
+    //TODO many to many to bonus
+    public int getSnitchPoints(){
+        return snitchType.getPoints(); //TODO add bonus points
+    }
     public Snitch(){}
 
     public Long getId() {

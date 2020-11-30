@@ -10,9 +10,9 @@ public class SnitchType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public String name;
-    public String description;
-    public int points;
+    private String name;
+    private String description;
+    private int points;
 
     public SnitchType(){}
     public Long getId() {

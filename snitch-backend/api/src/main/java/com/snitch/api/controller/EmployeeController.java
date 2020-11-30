@@ -1,6 +1,7 @@
 package com.snitch.api.controller;
 
 import com.snitch.api.service.EmployeeService;
+import com.snitch.api.viewmodels.EmployeeVM;
 import com.snitch.entities.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,5 +19,10 @@ public class EmployeeController {
     @GetMapping("/employee/{id}")
     public Employee getEmployee(@PathVariable("id") long id) {
         return employeeService.getEmployee(id);
+    }
+
+    @GetMapping("/employee")
+    public List<EmployeeVM> getEmployeeList() {
+        return employeeService.getEmployeeList();
     }
 }
