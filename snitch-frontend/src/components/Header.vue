@@ -18,15 +18,15 @@ export default {
   },
   data() {
     return {
-      bigNavigationBackground: true,
+      bigNavigationBackground: null,
     };
   },
   watch: {
     $route(to, from) {
       if (this.$route.name === "Home") {
-        this.bigNavigationBackground = true;
+        this.bigNavigationBackground = true
       } else {
-        this.bigNavigationBackground = false;
+        this.bigNavigationBackground = false
       }
     },
   },
@@ -57,5 +57,4 @@ export default {
 .nav-background {
   transform: translate(0, -270px) scale(2.8, 0.1);
 }
-
 </style>
