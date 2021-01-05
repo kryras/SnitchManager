@@ -1,0 +1,11 @@
+// -- circles -- //
+@mixin create-circle($size, $color, $top: 0, $left: 0) {
+    content: "";
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $size;
+    height: $size;
+    border-radius: 100%;
+    border: 5px solid $color;
+}
