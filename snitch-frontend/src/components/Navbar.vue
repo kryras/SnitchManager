@@ -85,6 +85,9 @@ export default {
 .language {
   &-desktop {
     display: block;
+    ul {
+      list-style: none;
+    }
   }
   &-mobile {
     display: none;
