@@ -1,6 +1,7 @@
 // -- colors -- //
 $solid-border-color: #5373b2;
-$input-gradient: linear-gradient(98.83deg, #462F88 -3.46%, #5373B2 44.53%, #4B9CBC 110.29%);
+$input-gradient: linear-gradient(98.83deg, #462f88 -3.46%, #5373b2 44.53%, #4b9cbc 110.29%);
+$input-gradient-inverted: linear-gradient(260deg, #462f88 -3.46%, #5373b2 44.53%, #4b9cbc 110.29%);
 
 // -- fonts -- //
 $nav-font-size: 1.8rem;
@@ -9,12 +10,17 @@ $title-font-size: 5rem;
 
 // -- radius -- //
 $border-radius: 35px;
+$border-size: 5px;
 
 // -- dimensions etc. -- //
 // general
 $content-min-width: 768px;
 $content-max-width: 1224px;
+// button, input
+$width: 292px;
+$height: 64px;
 // navbar
 $nav-element-padding: 14px 20px;
 // media
 $mobile-max-width: 900px; // temporary?
+

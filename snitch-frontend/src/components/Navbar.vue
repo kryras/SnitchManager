@@ -34,7 +34,7 @@
             <li><router-link to="/">bonuses</router-link></li>
           </ul>
         </li>
-        <li><router-link to="/about">about</router-link></li>
+        <li><router-link :to="{ name: 'About' }">about</router-link></li>
         <li class="language-mobile">
           <label for="drop-2" class="toggle">EN</label>
           <label for="drop-2" class="toggle-desktop">EN</label>
@@ -44,7 +44,11 @@
             <li class="lang">PL</li>
           </ul>
         </li>
-        <li><router-link to="/">login/register</router-link></li>
+        <li>
+          <router-link :to="{ name: 'LoginRegister' }"
+            >login/register</router-link
+          >
+        </li>
       </ul>
     </nav>
   </div>
@@ -69,7 +73,7 @@ export default {
   max-width: $content-max-width;
 
   a.router-link-exact-active {
-    font-weight: bold;
+    text-shadow: 0px 0px 4px rgb(75, 174, 195);
   }
 }
 

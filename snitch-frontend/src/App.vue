@@ -41,6 +41,11 @@ body {
   height: 100%;
 }
 
+h1 {
+  font-size: 5rem;
+  font-weight: 400;
+}
+
 #app {
   width: 100%;
   height: 100%;
@@ -48,7 +53,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000;
- }
+}
 
 .container {
   position: relative;

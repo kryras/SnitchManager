@@ -5,7 +5,7 @@
       <h2 class="hero__subtitle">
         Tell on your colleagues and gain extra points
       </h2>
-      <router-link class="hero__button" to="/about">
+      <router-link class="hero__button" :to="{ name: 'LoginRegister' }">
         BECOME A SNITCH TODAY!
       </router-link>
       <img
@@ -110,6 +110,8 @@ export default {
       position: absolute;
       z-index: -1;
     }
+
+    &:focus,
     &:hover {
       background-color: transparent;
     }
