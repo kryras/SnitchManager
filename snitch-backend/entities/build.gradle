@@ -17,6 +17,9 @@ dependencies {
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0.pr3'
-
+	compileOnly 'org.projectlombok:lombok:1.18.6'
+	annotationProcessor 'org.projectlombok:lombok:1.18.6'
+	testCompileOnly 'org.projectlombok:lombok:1.18.6'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.6'
 }
 

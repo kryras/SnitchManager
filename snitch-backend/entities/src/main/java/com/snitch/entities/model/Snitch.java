@@ -2,8 +2,13 @@ package com.snitch.entities.model;
 
 import javax.persistence.*;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "snitch")
+@Data
+@NoArgsConstructor
 public class Snitch {
 
     @Id
@@ -21,38 +26,5 @@ public class Snitch {
     //TODO many to many to bonus
     public int getSnitchPoints(){
         return snitchType.getPoints(); //TODO add bonus points
-    }
-    public Snitch(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getSnitchId() {
-        return snitchId;
-    }
-
-    public void setSnitchId(User snitchId) {
-        this.snitchId = snitchId;
-    }
-
-    public User getVictimId() {
-        return victimId;
-    }
-
-    public void setVictimId(User victimId) {
-        this.victimId = victimId;
-    }
-
-    public SnitchType getSnitchType() {
-        return snitchType;
-    }
-
-    public void setSnitchType(SnitchType snitchType) {
-        this.snitchType = snitchType;
     }
 }
