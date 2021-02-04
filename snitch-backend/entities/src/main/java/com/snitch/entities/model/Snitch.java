@@ -11,10 +11,10 @@ public class Snitch {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional =false)
-    private Employee snitchId;
+    private User snitchId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional =false)
-    private Employee victimId;
+    private User victimId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional =false)
     private SnitchType snitchType;
@@ -32,19 +32,19 @@ public class Snitch {
         this.id = id;
     }
 
-    public Employee getSnitchId() {
+    public User getSnitchId() {
         return snitchId;
     }
 
-    public void setSnitchId(Employee snitchId) {
+    public void setSnitchId(User snitchId) {
         this.snitchId = snitchId;
     }
 
-    public Employee getVictimId() {
+    public User getVictimId() {
         return victimId;
     }
 
-    public void setVictimId(Employee victimId) {
+    public void setVictimId(User victimId) {
         this.victimId = victimId;
     }
 

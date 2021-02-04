@@ -1,9 +1,9 @@
 package com.snitch.api.viewmodels;
 
-import com.snitch.entities.model.Employee;
 import com.snitch.entities.model.Snitch;
+import com.snitch.entities.model.User;
 
-public class EmployeeVM {
+public class UserVM {
 
     private String firstName;
     private String lastName;
@@ -12,13 +12,13 @@ public class EmployeeVM {
     private int snitchCount;
     private int victimCount;
 
-    public EmployeeVM(Employee emp) {
-        firstName = emp.getFirstName();
-        lastName = emp.getLastName();
-        position = emp.getPosition();
-        points = emp.getSnitchList().stream().mapToInt(Snitch::getSnitchPoints).sum();
-        snitchCount = emp.getSnitchList().size();
-        victimCount = emp.getVictimList().size();
+    public UserVM(User user) {
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
+        position = user.getPosition();
+        points = user.getSnitchList().stream().mapToInt(Snitch::getSnitchPoints).sum();
+        snitchCount = user.getSnitchList().size();
+        victimCount = user.getVictimList().size();
     }
 
     public String getFirstName() {

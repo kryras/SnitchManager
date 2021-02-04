@@ -8,3 +8,6 @@ create database snitch;
 create user 'snitch'@'localhost' identified by 'snitch';
 grant all privileges on snitch.* to 'snitch'@'localhost' identified by 'snitch';
 
+#SECURITY
+snitch.app.jwtSecret= snitchSecretKey
+snitch.app.jwtExpirationMs= 86400000
