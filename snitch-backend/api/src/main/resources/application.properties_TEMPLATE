@@ -9,5 +9,16 @@ create user 'snitch'@'localhost' identified by 'snitch';
 grant all privileges on snitch.* to 'snitch'@'localhost' identified by 'snitch';
 
 #SECURITY
-snitch.app.jwtSecret= snitchSecretKey
-snitch.app.jwtExpirationMs= 86400000
+snitch.app.jwtSecret=snitchSecretKey
+snitch.app.jwtExpirationMs=86400000
+
+snitch.app.adminEmail=wasz email
+
+#Email configuration
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=snitch.project2021@gmail.com
+spring.mail.password=haslo
+spring.mail.properties.mail.smtp.auth=true;
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true

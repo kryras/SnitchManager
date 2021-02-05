@@ -1,7 +1,8 @@
-package com.snitch.api.service;
+package com.snitch.api.service.impl;
 
 
 import com.snitch.api.repository.UserRepository;
+import com.snitch.api.service.IUserService;
 import com.snitch.api.viewmodels.UserVM;
 import com.snitch.entities.model.User;
 
