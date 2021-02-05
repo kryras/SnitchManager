@@ -12,4 +12,5 @@ import enums.ERole;
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Long> {
     Optional<Role> getByName(ERole name);
+    boolean existsByName(ERole name);
 }
