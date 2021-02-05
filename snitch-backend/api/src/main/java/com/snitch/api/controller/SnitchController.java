@@ -20,7 +20,7 @@ public class SnitchController {
     ISnitchService snitchService;
 
     @GetMapping
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public List<SnitchVM> getSnitchList(){
         return snitchService.getSnitchList();
     }
