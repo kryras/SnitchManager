@@ -30,8 +30,11 @@
           <label for="drop-1" class="toggle-desktop">denunciation</label>
           <input type="checkbox" id="drop-1" />
           <ul>
-            <li><router-link to="/">types</router-link></li>
-            <li><router-link to="/">bonuses</router-link></li>
+            <li>
+              <router-link :to="{ name: 'DenunciationList' }">list</router-link>
+            </li>
+            <li><router-link :to="{ name: 'TypesList' }">types</router-link></li>
+            <li><router-link :to="{ name: 'BonusesList' }">bonuses</router-link></li>
           </ul>
         </li>
         <li><router-link :to="{ name: 'About' }">about</router-link></li>
@@ -56,7 +59,7 @@
 
 <script>
 export default {
-  name: "Navbar",
+  name: "Navbar"
 };
 </script>
 
