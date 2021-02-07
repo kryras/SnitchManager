@@ -21,25 +21,25 @@ public class SnitchController {
     ISnitchService snitchService;
 
     @GetMapping
-    //@PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') || hasRole('MANAGER') || hasRole('ADMIN')")
     public List<SnitchVM> getSnitchList(){
         return snitchService.getSnitchList();
     }
 
     @GetMapping("/bonus")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MANAGER') || hasRole('ADMIN')")
     public List<NamedListVM> getBonusList(){
         return snitchService.getBonusListName();
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MANAGER') || hasRole('ADMIN')")
     public List<NamedListVM> getUserList(){
         return snitchService.getUserListName();
     }
 
     @GetMapping("/type")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MANAGER') || hasRole('ADMIN')")
     public List<NamedListVM> getTypeList(){
         return snitchService.getTypeListName();
     }

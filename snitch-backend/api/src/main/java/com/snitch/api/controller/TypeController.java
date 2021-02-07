@@ -18,7 +18,6 @@ public class TypeController {
     private ITypeService typeService;
 
     @GetMapping
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public List<SnitchType> getTypeList() {
         return typeService.getTypeList();
     }

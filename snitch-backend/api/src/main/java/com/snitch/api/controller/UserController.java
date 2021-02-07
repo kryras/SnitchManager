@@ -25,13 +25,13 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping("/ranking")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') || hasRole('MANAGER') || hasRole('ADMIN')")
     public List<UserVM> getEmployeeList() {
         return userService.getEmployeeList();
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<User> getUserList() {
         return userService.getUserList();
     }

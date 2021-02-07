@@ -3,6 +3,7 @@ package com.snitch.api.viewmodels;
 import com.snitch.entities.model.Snitch;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class SnitchVM {
         this.when = snitch.getDate();
         this.type = snitch.getSnitchType().getName();
         this.points = snitch.getSnitchPoints();
+        this.bonus = new ArrayList<>();
         snitch.getBonuses().forEach(x -> this.bonus.add(x.getName()));
     }
 }

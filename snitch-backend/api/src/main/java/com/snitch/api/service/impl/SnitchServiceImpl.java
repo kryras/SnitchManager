@@ -15,9 +15,7 @@ import enums.ERole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SnitchServiceImpl implements ISnitchService {
@@ -36,6 +34,7 @@ public class SnitchServiceImpl implements ISnitchService {
 
     @Override
     public List<SnitchVM> getSnitchList() {
+
         List<SnitchVM> snitchList = new ArrayList<>();
         for(Snitch snitch: snitchRepository.findAll()){
             snitchList.add(new SnitchVM(snitch));

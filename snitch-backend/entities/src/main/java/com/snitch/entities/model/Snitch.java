@@ -31,7 +31,7 @@ public class Snitch {
     private SnitchType snitchType;
 
     @NonNull
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "snitch_bonus",
             joinColumns = @JoinColumn(name = "snitch_id"),
             inverseJoinColumns = @JoinColumn(name = "bonus_id"))
