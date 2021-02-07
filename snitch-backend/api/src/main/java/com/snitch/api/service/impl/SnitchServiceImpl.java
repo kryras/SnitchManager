@@ -4,8 +4,10 @@ import com.snitch.api.repository.BonusRepository;
 import com.snitch.api.repository.SnitchRepository;
 import com.snitch.api.repository.SnitchTypeRepository;
 import com.snitch.api.repository.UserRepository;
+import com.snitch.api.service.IEmailService;
 import com.snitch.api.service.ISnitchService;
 import com.snitch.api.viewmodels.NamedListVM;
+import com.snitch.api.viewmodels.SnitchCreateVM;
 import com.snitch.api.viewmodels.SnitchVM;
 import com.snitch.entities.model.Bonus;
 import com.snitch.entities.model.Snitch;
@@ -31,6 +33,9 @@ public class SnitchServiceImpl implements ISnitchService {
 
     @Autowired
     SnitchTypeRepository snitchTypeRepository;
+
+    @Autowired
+    IEmailService emailService;
 
     @Override
     public List<SnitchVM> getSnitchList() {
@@ -70,5 +75,25 @@ public class SnitchServiceImpl implements ISnitchService {
             typeList.add(new NamedListVM(t));
         }
         return typeList;
+    }
+
+    @Override
+    public void saveSnitch(SnitchCreateVM snitchVM) {
+        User snitch = userRepository.findById(snitchVM.getSnitchId()).orElseThrow();
+        User victim = userRepository.findById(snitchVM.getVictimId()).orElseThrow();
+        SnitchType type = snitchTypeRepository.findById(snitchVM.getTypeId()).orElseThrow();
+        List<Bonus> bonuses = new ArrayList<>();
+
+        for(Long bon: snitchVM.getBonusIds()){
+            Bonus b = bonusRepository.findById(bon).orElseThrow();
+            bonuses.add(b);
+        }
+        Snitch newSnitch = new Snitch();
+        newSnitch.setSnitchId(snitch);
+        newSnitch.setVictimId(victim);
+        newSnitch.setSnitchType(type);
+        newSnitch.setBonuses(new HashSet<>(bonuses));
+        newSnitch.setDate(Calendar.getInstance().getTime());
+        emailService.sendVictimEmail(victim.getEmail());
     }
 }

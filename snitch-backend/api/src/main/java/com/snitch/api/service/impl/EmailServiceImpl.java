@@ -43,6 +43,22 @@ public class EmailServiceImpl implements IEmailService {
         javaMailSender.send(mail);
     }
 
+    @Override
+    public void sendVictimEmail(String emailTo) {
+        MimeMessage mail = javaMailSender.createMimeMessage();
+        try {
+            String context = templateEngine.process("snitchAddVictim",new Context());
+            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+            helper.setTo(emailTo);
+            helper.setFrom(from);
+            helper.setSubject(subject);
+            helper.setText(context, true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        javaMailSender.send(mail);
+    }
+
     private String createAdminAccountRecoverEmailEmailBody(String password) {
         Context context = new Context();
         context.setVariable("password", password);
