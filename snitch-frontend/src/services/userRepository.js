@@ -6,7 +6,7 @@ export default {
         return Repository.get(`${resource}`);
     },
     getRanking() {
-        return Repository.get(`${resource}`+`/ranking`);
+        return Repository.get(`${resource}/ranking`);
     },
     getById(userId) {
         return Repository.get(`${resource}/${userId}`);

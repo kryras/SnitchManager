@@ -14,7 +14,12 @@
     <div v-if="loading"><h2>Loading...</h2></div>
 
     <div v-else>
-      <CustomArray v-if="res !== null && res.length > 0" :data="res" :title="title" :entriesPerPage="20" />
+      <CustomArray
+        v-if="res !== null && res.length > 0"
+        :data="res"
+        :title="title"
+        :entriesPerPage="20"
+      />
     </div>
   </section>
 </template>
@@ -22,7 +27,7 @@
 <script>
 import CustomArray from "@/components/CustomArray.vue";
 
-import { repositoryFactory } from "./../../services/repositoryFactory";
+import { repositoryFactory } from "@/services/repositoryFactory";
 const userRepository = repositoryFactory.get("user");
 
 export default {
@@ -33,7 +38,7 @@ export default {
       title: "",
       res: null,
       errored: false,
-      loading: true,
+      loading: true
     };
   },
   created() {
@@ -41,14 +46,16 @@ export default {
   },
   methods: {
     async fetchData() {
-      const { data } = await userRepository
+      await userRepository
         .getRanking()
+        .then((response) => {
+          this.res = response.data;
+        })
         .catch(error => {
           console.log(error);
           this.errored = true;
         })
         .finally(() => (this.loading = false));
-      this.res = data;
     }
   }
 };

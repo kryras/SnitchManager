@@ -31,7 +31,7 @@
 import CustomArray from "@/components/CustomArray.vue";
 import ManagerFormAddBonus from "@/components/ManagerFormAddBonus.vue";
 
-import { repositoryFactory } from "./../../services/repositoryFactory";
+import { repositoryFactory } from "@/services/repositoryFactory";
 const bonusesRepository = repositoryFactory.get("bonuses");
 
 export default {
@@ -50,14 +50,16 @@ export default {
   },
   methods: {
     async fetchData() {
-      const { data } = await bonusesRepository
+      await bonusesRepository
         .get()
+        .then((response) => {
+          this.res = response.data;
+        })
         .catch(error => {
           console.log(error);
           this.errored = true;
         })
         .finally(() => (this.loading = false));
-      this.res = data;
     }
   }
 };

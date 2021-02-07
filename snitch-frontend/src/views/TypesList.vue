@@ -31,7 +31,7 @@
 import CustomArray from "@/components/CustomArray.vue";
 import ManagerFormAddType from "@/components/ManagerFormAddType.vue";
 
-import { repositoryFactory } from "./../../services/repositoryFactory";
+import { repositoryFactory } from "@/services/repositoryFactory";
 const typesRepository = repositoryFactory.get("types");
 
 export default {
@@ -50,14 +50,16 @@ export default {
   },
   methods: {
     async fetchData() {
-      const { data } = await typesRepository
+      await typesRepository
         .get()
+        .then((response) => {
+          this.res = response.data;
+        })
         .catch(error => {
           console.log(error);
           this.errored = true;
         })
         .finally(() => (this.loading = false));
-      this.res = data;
     }
   }
 };

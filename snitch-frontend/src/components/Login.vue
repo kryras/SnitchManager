@@ -59,13 +59,6 @@ export default {
   },
   methods: {
     submit(user) {
-<<<<<<< HEAD
-      // console.log("submit: ", JSON.stringify(user));
-      console.log("submit: ", JSON.stringify(this.user));
-    }
-  }
-=======
-      console.log("Aaa");
       this.$store.dispatch('auth/login', user).then(
             () => {
               console.log("zalogowano pomyslnie");
@@ -80,7 +73,6 @@ export default {
       );
     },
   },
->>>>>>> serwis do rejestacji i logowania
 };
 </script>
 

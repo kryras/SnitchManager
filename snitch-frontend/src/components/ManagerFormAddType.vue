@@ -63,7 +63,7 @@
 import { Form, Field } from "vee-validate";
 import { object, string, number } from "yup";
 
-import { repositoryFactory } from "./../../services/repositoryFactory";
+import { repositoryFactory } from "@/services/repositoryFactory";
 const typesRepository = repositoryFactory.get("types");
 
 export default {
