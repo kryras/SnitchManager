@@ -5,10 +5,10 @@ export default {
     get() {
         return Repository.get(`${resource}`);
     },
-    getType(typeId) {
+    getById(typeId) {
         return Repository.get(`${resource}/${typeId}`);
     },
-    createType(payload) {
+    create(payload) {
         return Repository.post(`${resource}`, payload);
     }
 }

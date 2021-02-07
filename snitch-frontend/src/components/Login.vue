@@ -47,22 +47,22 @@ export default {
   data() {
     const schema = object().shape({
       username: string().required(),
-      password: string().required(),
+      password: string().required()
     });
     return {
       schema,
       user: {
         username: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
     submit(user) {
       // console.log("submit: ", JSON.stringify(user));
       console.log("submit: ", JSON.stringify(this.user));
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -84,22 +84,22 @@ export default {
 
   .input {
     @include create-input(
-      $width,
-      $height,
       $border-size,
       $border-radius,
-      $input-gradient
+      $input-gradient,
+      $width,
+      $height
     );
   }
 
   .button {
     @include create-button(
-      $width,
-      $height,
       $border-size,
       $border-radius,
       $input-gradient,
-      $input-gradient-inverted
+      $input-gradient-inverted,
+      $width,
+      $height
     );
   }
 }

@@ -5,10 +5,10 @@ export default {
     get() {
         return Repository.get(`${resource}`);
     },
-    getBonus(bonusId) {
+    getById(bonusId) {
         return Repository.get(`${resource}/${bonusId}`);
     },
-    createBonus(payload) {
+    create(payload) {
         return Repository.post(`${resource}`, payload);
     }
 }

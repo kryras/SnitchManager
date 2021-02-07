@@ -123,22 +123,22 @@ export default {
 
   .input {
     @include create-input(
-      $width,
-      $height,
       $border-size,
       $border-radius,
-      $input-gradient
+      $input-gradient,
+      $width,
+      $height
     );
   }
 
   .button {
     @include create-button(
-      $width,
-      $height,
       $border-size,
       $border-radius,
       $input-gradient,
-      $input-gradient-inverted
+      $input-gradient-inverted,
+      $width,
+      $height
     );
   }
 }
