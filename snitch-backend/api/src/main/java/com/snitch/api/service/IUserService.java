@@ -9,5 +9,6 @@ import javassist.NotFoundException;
 
 public interface IUserService {
     User getUser(Long id) throws NotFoundException;
-    List<UserVM> getUserList();
+    List<UserVM> getEmployeeList();
+    List<User> getUserList();
 }

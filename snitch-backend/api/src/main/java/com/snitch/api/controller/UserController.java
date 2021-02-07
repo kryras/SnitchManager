@@ -24,9 +24,15 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/ranking")
+    @PreAuthorize("hasRole('USER')")
     public List<UserVM> getEmployeeList() {
+        return userService.getEmployeeList();
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('USER')")
+    public List<User> getUserList() {
         return userService.getUserList();
     }
 

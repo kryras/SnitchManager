@@ -69,7 +69,6 @@ public class DatabaseChecker {
             User newUser = new User("admin",
                     "admin",
                     "admin",
-                    "admin",
                     adminEmail,
                     encoder.encode(newPassword),
                     Collections.singleton(adminRole));

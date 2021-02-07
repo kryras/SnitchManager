@@ -6,6 +6,7 @@ import com.snitch.api.service.IUserService;
 import com.snitch.api.viewmodels.UserVM;
 import com.snitch.entities.model.User;
 
+import enums.ERole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +27,19 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserVM> getUserList() {
+    public List<UserVM> getEmployeeList() {
         List<UserVM> result = new ArrayList<>();
-        for(User user: userRepository.findAll()){
-            result.add(new UserVM(user));
+        for(User u: userRepository.findAll()){
+            if(u.getRoles().stream().anyMatch(x -> x.getName() == ERole.ROLE_USER))
+                result.add(new UserVM(u));
         }
+        return result;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        List<User> result = new ArrayList<>();
+        userRepository.findAll().forEach(result::add);
         return result;
     }
 }

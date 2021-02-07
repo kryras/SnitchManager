@@ -87,7 +87,6 @@ public class AuthServiceImpl implements IAuthService {
 
         User user = new User(signUpRequest.getFirstName(),
                 signUpRequest.getLastName(),
-                signUpRequest.getPosition(),
                 signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()),

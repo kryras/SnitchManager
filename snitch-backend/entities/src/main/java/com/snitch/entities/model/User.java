@@ -41,10 +41,6 @@ public class User {
 
     @NonNull
     @Size(max = 20)
-    private String position;
-
-    @NonNull
-    @Size(max = 20)
     private String username;
 
     @NonNull
