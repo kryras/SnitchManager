@@ -138,6 +138,7 @@ export default {
 .form {
   width: 100%;
   display: flex;
+  flex-flow: row wrap;
   justify-content: flex-start;
 
   .label {
@@ -186,10 +187,8 @@ export default {
     $width-list-input,
     $height
   );
-  // align-self: flex-end;
   margin-top: 10px;
   margin-left: auto;
   margin-right: 0px;
-  // float: right;
 }
 </style>
