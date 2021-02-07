@@ -24,7 +24,7 @@
       </label>
       <ul class="menu">
         <li><router-link to="/">home</router-link></li>
-        <li><router-link to="/">ranking</router-link></li>
+        <li><router-link :to="{ name: 'Ranking' }">ranking</router-link></li>
         <li>
           <label for="drop-1" class="toggle">denunciation</label>
           <label for="drop-1" class="toggle-desktop">denunciation</label>

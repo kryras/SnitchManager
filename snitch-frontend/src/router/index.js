@@ -5,6 +5,7 @@ import LoginRegister from '../views/LoginRegister.vue'
 import DenunciationList from '../views/DenunciationList.vue'
 import TypesList from '../views/TypesList.vue'
 import BonusesList from '../views/BonusesList.vue'
+import Ranking from '../views/Ranking.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/bonuses-list',
     name: 'BonusesList',
     component: BonusesList
+  },
+  {
+    path: '/ranking',
+    name: 'Ranking',
+    component: Ranking
   }
 ]
 
