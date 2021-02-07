@@ -1,6 +1,7 @@
 package com.snitch.api.controller;
 
 import com.snitch.api.service.ISnitchService;
+import com.snitch.api.viewmodels.NamedListVM;
 import com.snitch.api.viewmodels.SnitchVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,5 +24,23 @@ public class SnitchController {
     //@PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
     public List<SnitchVM> getSnitchList(){
         return snitchService.getSnitchList();
+    }
+
+    @GetMapping("/bonus")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<NamedListVM> getBonusList(){
+        return snitchService.getBonusListName();
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<NamedListVM> getUserList(){
+        return snitchService.getUserListName();
+    }
+
+    @GetMapping("/type")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<NamedListVM> getTypeList(){
+        return snitchService.getTypeListName();
     }
 }

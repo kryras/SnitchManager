@@ -5,6 +5,7 @@ import com.snitch.api.repository.SnitchTypeRepository;
 import com.snitch.api.service.ITypeService;
 import com.snitch.entities.model.Bonus;
 import com.snitch.entities.model.SnitchType;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,15 @@ public class TypeServiceImpl implements ITypeService {
         List<SnitchType> types = new ArrayList<>();
         typeRepository.findAll().forEach(types::add);
         return types;
+    }
+
+    @Override
+    public void updateType(SnitchType type) {
+        typeRepository.save(type);
+    }
+
+    @Override
+    public SnitchType getSnitchType(long id) throws NotFoundException {
+        return typeRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
     }
 }

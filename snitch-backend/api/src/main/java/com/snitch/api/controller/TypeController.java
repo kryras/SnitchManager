@@ -1,9 +1,8 @@
 package com.snitch.api.controller;
 
-import com.snitch.api.service.IBonusService;
 import com.snitch.api.service.ITypeService;
-import com.snitch.entities.model.Bonus;
 import com.snitch.entities.model.SnitchType;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +23,21 @@ public class TypeController {
         return typeService.getTypeList();
     }
 
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public SnitchType getSnitchType(@PathVariable("id") long id) throws NotFoundException {
+        return typeService.getSnitchType(id);
+    }
+
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public void saveType(@RequestBody SnitchType newType) {
         typeService.saveType(newType);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public void updateType(@RequestBody SnitchType type) {
+        typeService.updateType(type);
     }
 }
