@@ -5,10 +5,10 @@ export default {
     get() {
         return Repository.get(`${resource}`);
     },
-    getSnitch(snitchId) {
+    getById(snitchId) {
         return Repository.get(`${resource}/${snitchId}`);
     },
-    createSnitch(payload) {
+    create(payload) {
         return Repository.post(`${resource}`, payload);
     }
 }

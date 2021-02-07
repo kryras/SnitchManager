@@ -14,7 +14,7 @@
     <div v-if="loading"><h2>Loading...</h2></div>
 
     <div v-else>
-      <CustomArray v-if="res" :data="res" :title="title" :entriesPerPage="20" />
+      <CustomArray v-if="res !== null && res.length > 0" :data="res" :title="title" :entriesPerPage="20" />
     </div>
   </section>
 </template>

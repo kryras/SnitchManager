@@ -11,7 +11,7 @@
 }
 
 // -- inputs + labels -- //
-@mixin create-input($width, $height, $border-size, $border-radius, $input-gradient) {
+@mixin create-input($border-size, $border-radius, $input-gradient, $width: auto, $height: auto) {
     width: $width;
     height: $height;
     border: double $border-size transparent;
@@ -43,11 +43,11 @@
 }
 
 // -- buttons -- //
-@mixin create-button($width, $height, $border-size, $border-radius, $input-gradient, $input-gradient-inverted) {
+@mixin create-button($border-size, $border-radius, $input-gradient, $input-gradient-inverted, $width:auto, $height:auto) {
     position: relative;
     width: $width;
     height: $height;
-    margin: 75px auto 0 auto;
+    margin: 59px auto 0 auto;
     font-weight: 700;
     color: #fff;
     border-radius: $border-radius;
