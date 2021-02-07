@@ -59,10 +59,28 @@ export default {
   },
   methods: {
     submit(user) {
+<<<<<<< HEAD
       // console.log("submit: ", JSON.stringify(user));
       console.log("submit: ", JSON.stringify(this.user));
     }
   }
+=======
+      console.log("Aaa");
+      this.$store.dispatch('auth/login', user).then(
+            () => {
+              console.log("zalogowano pomyslnie");
+            },
+            error => {
+              this.loading = false;
+              this.message =
+                (error.response && error.response.data) ||
+                error.message ||
+                error.toString();
+            }
+      );
+    },
+  },
+>>>>>>> serwis do rejestacji i logowania
 };
 </script>
 

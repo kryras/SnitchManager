@@ -62,6 +62,32 @@
         id="register-email"
       />
 
+      <label class="label" for="first-name">
+        first name
+        <span class="label-error">{{ errors.firstName }}</span>
+      </label>
+      <Field
+        class="input"
+        v-model="user.firstName"
+        name="firstName"
+        as="input"
+        placeholder="first-name"
+        id="first-name"
+      />
+
+      <label class="label" for="last-name">
+        last name
+        <span class="label-error">{{ errors.lastName }}</span>
+      </label>
+      <Field
+        class="input"
+        v-model="user.lastName"
+        name="lastName"
+        as="input"
+        placeholder="last-name"
+        id="last-name"
+      />
+
       <button class="button">REGISTER</button>
     </Form>
   </div>
@@ -70,8 +96,9 @@
 <script>
 import { Form, Field } from "vee-validate";
 import { object, string, ref } from "yup";
+import { mapActions} from 'vuex'
 export default {
-  name: "Register",
+  name: "register",
   components: { Form, Field },
   data() {
     const schema = object().shape({
@@ -81,6 +108,8 @@ export default {
         .required()
         .oneOf([ref("password")], "passwords do not match"),
       email: string().required().email(),
+      firstName: string().required(),
+      lastName: string().required()
     });
     return {
       schema,
@@ -89,14 +118,35 @@ export default {
         password: "",
         confirmPassword: "",
         email: "",
+        firstName: "",
+        lastName: ""
       },
     };
   },
   methods: {
+    ...mapActions({
+      register: 'auth/register'
+    }),
     submit(user) {
       // console.log("submit: ", JSON.stringify(user));
-      console.log("submit: ", JSON.stringify(this.user));
-    },
+      // console.log("submit: ", JSON.stringify(this.user));
+      console.log("aaa");
+      this.message = '';
+      this.submitted = true;
+      this.$store.dispatch('auth/register', user).then(
+        data => {
+          this.message = data.message;
+          this.successful = true;
+        },
+        error => {
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+        }
+      );
+    }
   },
 };
 </script>
