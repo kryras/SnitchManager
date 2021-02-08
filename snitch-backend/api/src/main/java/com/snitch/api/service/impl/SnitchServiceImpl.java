@@ -102,11 +102,13 @@ public class SnitchServiceImpl implements ISnitchService {
             bonuses.add(b);
         }
         Snitch newSnitch = new Snitch();
+        newSnitch.setId(snitchVM.getId());
         newSnitch.setSnitchId(snitch);
         newSnitch.setVictimId(victim);
         newSnitch.setSnitchType(type);
         newSnitch.setBonuses(new HashSet<>(bonuses));
         newSnitch.setDate(Calendar.getInstance().getTime());
+        snitchRepository.save(newSnitch);
         emailService.sendVictimEmail(victim.getEmail());
     }
 }
