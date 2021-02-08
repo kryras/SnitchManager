@@ -118,6 +118,7 @@ export default {
   );
   margin-top: 10px;
 }
+
 .visible {
   visibility: hidden;
 }

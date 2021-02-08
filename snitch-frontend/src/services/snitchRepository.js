@@ -10,5 +10,14 @@ export default {
     },
     create(payload) {
         return Repository.post(`${resource}`, payload);
+    },
+    getUsers() {
+        return Repository.get(`${resource}/user`);
+    },
+    getTypes() {
+        return Repository.get(`${resource}/type`);
+    },
+    getBonuses() {
+        return Repository.get(`${resource}/bonus`);
     }
 }
