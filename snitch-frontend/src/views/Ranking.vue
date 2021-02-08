@@ -1,27 +1,29 @@
 <template>
-  <div class="">
-    <h1>Ranking</h1>
-  </div>
-
-  <section v-if="errored">
-    <h2>
-      We're sorry, we're not able to retrieve this information at the moment,
-      please try back later
-    </h2>
-  </section>
-
-  <section v-else>
-    <div v-if="loading"><h2>Loading...</h2></div>
-
-    <div v-else>
-      <CustomArray
-        v-if="res !== null && res.length > 0"
-        :data="res"
-        :title="title"
-        :entriesPerPage="20"
-      />
+  <div class="ranking-container">
+    <div>
+      <h1>Ranking</h1>
     </div>
-  </section>
+
+    <section v-if="errored">
+      <h2>
+        We're sorry, we're not able to retrieve this information at the moment,
+        please try back later
+      </h2>
+    </section>
+
+    <section v-else>
+      <div v-if="loading"><h2>Loading...</h2></div>
+
+      <div v-else>
+        <CustomArray
+          v-if="res !== null && res.length > 0"
+          :data="res"
+          :title="title"
+          :entriesPerPage="20"
+        />
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -48,7 +50,7 @@ export default {
     async fetchData() {
       await userRepository
         .getRanking()
-        .then((response) => {
+        .then(response => {
           this.res = response.data;
         })
         .catch(error => {
@@ -62,4 +64,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.ranking-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
 </style>

@@ -1,10 +1,13 @@
 <template>
   <div class="form-container">
-    <button @click="showFormAction" class="button">
-      {{ formButtonText }}
-    </button>
+    <div v-if="editMode">
+      <h2>Edit bonus with id: {{ bonus.id }}</h2>
+    </div>
+    <div v-else>
+      <h2>Add new</h2>
+    </div>
+
     <Form
-      v-if="!isFormActive"
       class="form"
       @submit="submit"
       :validation-schema="schema"
@@ -54,8 +57,14 @@
           id="bonus-points"
         />
       </div>
-      <button class="button">ADD</button>
+      <button class="button">SAVE</button>
     </Form>
+    <button
+      v-show="false"
+      @click="assignValues"
+      class="button"
+      ref="elBtn"
+    ></button>
   </div>
 </template>
 
@@ -69,6 +78,12 @@ const bonusesRepository = repositoryFactory.get("bonuses");
 export default {
   name: "ManagerFormAddBonus",
   components: { Form, Field },
+  props: {
+    element: {
+      type: Object,
+      required: false
+    }
+  },
   data() {
     const schema = object().shape({
       name: string().required(),
@@ -86,13 +101,23 @@ export default {
         description: "",
         points: ""
       },
-      isFormActive: false,
-      formButtonText: "",
-      errorred: false
+      errorred: false,
+      elementCopy: null,
+      editMode: false
     };
   },
   created() {
-    this.showFormAction();
+    if (this.element !== null) {
+      this.elementCopy = this.element;
+      this.editMode = true;
+    }
+    this.$emit("clearEditedElement");
+  },
+  mounted() {
+    if (this.elementCopy !== null) {
+      let el = this.$refs.elBtn;
+      el.click();
+    }
   },
   methods: {
     submit(bonus) {
@@ -103,26 +128,16 @@ export default {
         .create(bonus)
         .then(() => {
           this.$emit("updateData");
-          this.clearInputs();
+          this.$emit("closeModal");
+          // this.clearInputs();
         })
         .catch(error => {
           console.log(error);
           this.errored = true;
         });
     },
-    clearInputs() {
-      this.bonus.name = "";
-      this.bonus.description = "";
-      this.bonus.points = "";
-    },
-    showFormAction() {
-      if (!this.isFormActive) {
-        this.formButtonText = "ADD NEW";
-      } else {
-        this.formButtonText = "HIDE FORM";
-      }
-      this.isFormActive = !this.isFormActive;
-      this.clearInputs();
+    assignValues() {
+      this.bonus = this.elementCopy;
     }
   }
 };
@@ -138,11 +153,11 @@ export default {
 .form {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: flex-start;
 
   .label {
-    @include create-label($width-list-input);
+    @include create-label(100%);
   }
 
   .input {
@@ -171,7 +186,7 @@ export default {
       $border-radius,
       $input-gradient,
       $input-gradient-inverted,
-      $width-list-input,
+      100%,
       $height
     );
     margin-left: auto;

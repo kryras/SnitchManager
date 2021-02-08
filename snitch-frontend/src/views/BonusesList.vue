@@ -4,7 +4,21 @@
       <h1>Bonuses list</h1>
     </div>
 
-    <ManagerFormAddBonus @updateData="fetchData" />
+    <Modal v-if="showModal" @close="showModal = !showModal" :title="title">
+      <ManagerFormAddBonus
+        @updateData="fetchData"
+        @closeModal="showModal = !showModal"
+        @clearEditedElement="clearEditedElement"
+        :element="singleElement"
+      />
+    </Modal>
+    <button
+      @click="showModal = !showModal"
+      class="button"
+      :class="{ visible: showModal }"
+    >
+      ADD NEW
+    </button>
     <section v-if="errored">
       <h2>
         We're sorry, we're not able to retrieve this information at the moment,
@@ -21,6 +35,7 @@
           :data="res"
           :title="title"
           :entriesPerPage="20"
+          @editEntry="edit"
         />
       </div>
     </section>
@@ -30,19 +45,22 @@
 <script>
 import CustomArray from "@/components/CustomArray.vue";
 import ManagerFormAddBonus from "@/components/ManagerFormAddBonus.vue";
+import Modal from "@/components/Modal.vue";
 
 import { repositoryFactory } from "@/services/repositoryFactory";
 const bonusesRepository = repositoryFactory.get("bonuses");
 
 export default {
   name: "BonusesList",
-  components: { CustomArray, ManagerFormAddBonus },
+  components: { CustomArray, ManagerFormAddBonus, Modal },
   data() {
     return {
-      title: "",
+      title: "Bonus",
+      showModal: false,
       res: null,
       errored: false,
-      loading: true
+      loading: true,
+      singleElement: null
     };
   },
   created() {
@@ -52,7 +70,7 @@ export default {
     async fetchData() {
       await bonusesRepository
         .get()
-        .then((response) => {
+        .then(response => {
           this.res = response.data;
         })
         .catch(error => {
@@ -60,6 +78,23 @@ export default {
           this.errored = true;
         })
         .finally(() => (this.loading = false));
+    },
+    async fetchDataById(id) {
+      await bonusesRepository
+        .getById(id)
+        .then(response => {
+          this.singleElement = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async edit(e) {
+      await this.fetchDataById(e);
+      this.showModal = true;
+    },
+    clearEditedElement() {
+      this.singleElement = null;
     }
   }
 };
@@ -70,5 +105,20 @@ export default {
   width: 100%;
   max-width: 1100px;
   margin: auto;
+}
+
+.button {
+  @include create-button(
+    $border-size,
+    $border-radius,
+    $input-gradient,
+    $input-gradient-inverted,
+    $width-list-input,
+    $height
+  );
+  margin-top: 10px;
+}
+.visible {
+  visibility: hidden;
 }
 </style>

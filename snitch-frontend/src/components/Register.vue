@@ -96,7 +96,7 @@
 <script>
 import { Form, Field } from "vee-validate";
 import { object, string, ref } from "yup";
-import { mapActions} from 'vuex'
+import { mapActions } from "vuex";
 export default {
   name: "register",
   components: { Form, Field },
@@ -107,7 +107,9 @@ export default {
       confirmPassword: string()
         .required()
         .oneOf([ref("password")], "passwords do not match"),
-      email: string().required().email(),
+      email: string()
+        .required()
+        .email(),
       firstName: string().required(),
       lastName: string().required()
     });
@@ -120,20 +122,19 @@ export default {
         email: "",
         firstName: "",
         lastName: ""
-      },
+      }
     };
   },
   methods: {
     ...mapActions({
-      register: 'auth/register'
+      register: "auth/register"
     }),
     submit(user) {
       // console.log("submit: ", JSON.stringify(user));
       // console.log("submit: ", JSON.stringify(this.user));
-      console.log("aaa");
-      this.message = '';
+      this.message = "";
       this.submitted = true;
-      this.$store.dispatch('auth/register', user).then(
+      this.$store.dispatch("auth/register", user).then(
         data => {
           this.message = data.message;
           this.successful = true;
@@ -147,7 +148,7 @@ export default {
         }
       );
     }
-  },
+  }
 };
 </script>
 

@@ -19,6 +19,11 @@
           <td v-for="column in columns" :key="column">
             {{ listElement?.[column] }}
           </td>
+          <td v-if="true">
+            <span @click="editEntry(listElement?.id)" class="table-edit"
+              >EDIT</span
+            >
+          </td>
         </tr>
       </tbody>
     </table>
@@ -62,15 +67,14 @@ export default {
       sortKey: "",
       startPage: 1,
       pageFrom: 0,
-      pageTo: 0,
+      pageTo: 0
     };
   },
   created() {
     this.columns = Object.keys(this.data[0]);
   },
   watch: {
-    preparedData() {
-    }
+    preparedData() {}
   },
   methods: {
     pagData(e) {
@@ -98,8 +102,11 @@ export default {
         )
       );
     },
-    paginate(data) {    
+    paginate(data) {
       return data.slice(this.pageFrom, this.pageTo);
+    },
+    editEntry(id) {
+      this.$emit("editEntry", id);
     }
   },
   computed: {
@@ -118,6 +125,14 @@ table,
 th,
 td {
   border: 1px solid black;
+}
+
+.table {
+  &-edit {
+    cursor: pointer;
+    font-size: bold;
+    // background: red;
+  }
 }
 
 .table__column-name {
