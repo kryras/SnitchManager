@@ -19,11 +19,11 @@ public class NamedListVM {
     public NamedListVM(SnitchType t)
     {
         this.id = t.getId();
-        this.name = t.getName();
+        this.name = t.getName() + "["+t.getPoints()+"]";
     }
     public NamedListVM(Bonus b)
     {
         this.id = b.getId();
-        this.name = b.getName();
+        this.name = b.getName() + "["+b.getPoints()+"]";
     }
 }

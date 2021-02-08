@@ -14,6 +14,7 @@ import com.snitch.entities.model.Snitch;
 import com.snitch.entities.model.SnitchType;
 import com.snitch.entities.model.User;
 import enums.ERole;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +77,10 @@ public class SnitchServiceImpl implements ISnitchService {
         }
         return typeList;
     }
-
+    @Override
+    public Snitch getSnitch(Long id) throws NotFoundException {
+        return snitchRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
+    }
     @Override
     public void saveSnitch(SnitchCreateVM snitchVM) {
         User snitch = userRepository.findById(snitchVM.getSnitchId()).orElseThrow();

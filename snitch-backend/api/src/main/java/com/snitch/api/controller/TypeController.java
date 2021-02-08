@@ -23,19 +23,19 @@ public class TypeController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('MANAGER')")
     public SnitchType getSnitchType(@PathVariable("id") long id) throws NotFoundException {
         return typeService.getSnitchType(id);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('MANAGER')")
     public void saveType(@RequestBody SnitchType newType) {
         typeService.saveType(newType);
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('MANAGER')")
     public void updateType(@RequestBody SnitchType type) {
         typeService.updateType(type);
     }
