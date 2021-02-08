@@ -3,11 +3,14 @@ package com.snitch.entities.model;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "snitch_type")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class SnitchType {
 

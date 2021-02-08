@@ -11,11 +11,14 @@ import javax.persistence.Table;
 
 import enums.ERole;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "roles")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Role {
     @Id

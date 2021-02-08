@@ -27,9 +27,9 @@ public class MonthlyWinScheduler {
     @Autowired
     private TemplateEngine templateEngine;
 
-    //@Scheduled(cron="1 0 1 * *") <-pierwszy dzien miesiąca np 2021-03-01 00:01:00, 2021-04-01 00:01:00
+    @Scheduled(cron="1 0 1 * * ?") //<-pierwszy dzien miesiąca np 2021-03-01 00:01:00, 2021-04-01 00:01:00
     //robi sie co minute dla testow
-    @Scheduled(cron="0 0/5 * * * ?")
+//    @Scheduled(cron="0 0/5 * * * ?")
     public void sendMailToPreviousMonthWinners() throws NotFoundException {
         Map<User, Integer> winnersWithPoints = monthlyWinSchedulerHelper.getThreeBestUsersFromPreviousMonthWithPointsMap();
         boolean emailForWinner = true;
