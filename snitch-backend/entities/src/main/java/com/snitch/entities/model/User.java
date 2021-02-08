@@ -53,15 +53,15 @@ public class User {
     private String password;
 
     @NonNull
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "snitchId")
+    @OneToMany(mappedBy = "snitchId", fetch = FetchType.EAGER)
     private List<Snitch> snitchList;
 
-    @OneToMany(mappedBy = "victimId")
+    @OneToMany(mappedBy = "victimId", fetch = FetchType.EAGER)
     private List<Snitch> victimList;
 }

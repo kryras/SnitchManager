@@ -1,6 +1,7 @@
 package com.snitch.api.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.snitch.entities.model.Role;
@@ -16,4 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
     boolean existsUserByRolesIn(Collection<Role> roles);
+    List<User> getAllByRolesIn(Collection<Role> roles);
 }

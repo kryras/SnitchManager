@@ -25,8 +25,6 @@ public class EmailServiceImpl implements IEmailService {
     @Value("${spring.mail.username}")
     private String from;
 
-    private final String subject = "Snitch - admin account new password";
-
     @Override
     public void sendAdminAccountRecoverEmail(String emailTo, String password) {
         MimeMessage mail = javaMailSender.createMimeMessage();
@@ -35,7 +33,7 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
             helper.setTo(emailTo);
             helper.setFrom(from);
-            helper.setSubject(subject);
+            helper.setSubject("Snitch - admin account new password!");
             helper.setText(context, true);
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -51,7 +49,7 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
             helper.setTo(emailTo);
             helper.setFrom(from);
-            helper.setSubject(subject);
+            helper.setSubject("Snitch - someone just denounced you!");
             helper.setText(context, true);
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -63,5 +61,21 @@ public class EmailServiceImpl implements IEmailService {
         Context context = new Context();
         context.setVariable("password", password);
         return templateEngine.process("adminAccountRecover", context);
+    }
+
+    @Override
+    public void sendResultsEmail(String emailTo, String context) {
+        MimeMessage mail = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+            helper.setTo(emailTo);
+            helper.setFrom(from);
+            helper.setSubject("Snitch - monthly results!");
+            helper.setText(context, true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        javaMailSender.send(mail);
+
     }
 }

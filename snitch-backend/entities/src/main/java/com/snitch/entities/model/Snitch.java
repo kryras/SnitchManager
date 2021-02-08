@@ -21,13 +21,13 @@ public class Snitch {
 
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional =false)
+    @ManyToOne(fetch = FetchType.EAGER, optional =false)
     private User snitchId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional =false)
+    @ManyToOne(fetch = FetchType.EAGER, optional =false)
     private User victimId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional =false)
+    @ManyToOne(fetch = FetchType.EAGER, optional =false)
     private SnitchType snitchType;
 
     @NonNull

@@ -7,6 +7,7 @@ import com.snitch.entities.model.User;
 
 import java.util.List;
 
+import enums.ERole;
 import javassist.NotFoundException;
 
 public interface IUserService {
@@ -15,4 +16,5 @@ public interface IUserService {
     List<UserAdminListVM> getUserList();
     List<Role> getRoles();
     void updateRole(Long userId, Long roleId);
+    List<User> getUsersWithRole(ERole ERole) throws NotFoundException;
 }

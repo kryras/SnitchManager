@@ -4,9 +4,9 @@ package com.snitch.api.service.impl;
 import com.snitch.api.repository.RoleRepository;
 import com.snitch.api.repository.UserRepository;
 import com.snitch.api.service.IUserService;
+import com.snitch.entities.model.Role;
 import com.snitch.api.viewmodels.UserAdminListVM;
 import com.snitch.api.viewmodels.UserRankingVM;
-import com.snitch.entities.model.Role;
 import com.snitch.entities.model.User;
 
 import enums.ERole;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javassist.NotFoundException;
@@ -22,10 +23,10 @@ import javassist.NotFoundException;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Override
     public User getUser(Long id) throws NotFoundException {
@@ -61,5 +62,12 @@ public class UserServiceImpl implements IUserService {
 
         user.getRoles().clear();
         user.getRoles().add(role);
+    }
+
+    @Override
+    public List<User> getUsersWithRole(ERole ERole) throws NotFoundException {
+        Role role = roleRepository.getByName(ERole)
+                .orElseThrow(() -> new NotFoundException("Role not found!"));
+        return userRepository.getAllByRolesIn(Collections.singletonList(role));
     }
 }
