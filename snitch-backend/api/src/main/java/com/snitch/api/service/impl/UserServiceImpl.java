@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javassist.NotFoundException;
@@ -40,6 +41,7 @@ public class UserServiceImpl implements IUserService {
             if(u.getRoles().stream().anyMatch(x -> x.getName() == ERole.ROLE_USER))
                 result.add(new UserRankingVM(u));
         }
+        result.sort(Comparator.comparing(UserRankingVM::getPoints).reversed());
         return result;
     }
 

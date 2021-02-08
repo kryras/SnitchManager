@@ -42,10 +42,10 @@ public class SnitchServiceImpl implements ISnitchService {
     public List<SnitchVM> getSnitchList() {
 
         List<SnitchVM> snitchList = new ArrayList<>();
-        for(Snitch snitch: snitchRepository.findAll()){
+        for(Snitch snitch: snitchRepository.findByOrderByDateAsc()){
             snitchList.add(new SnitchVM(snitch));
         }
-        snitchList.sort(Comparator.comparing(SnitchVM::getWhen));
+        //snitchList.sort(Comparator.comparing(SnitchVM::getWhen));
         return snitchList;
     }
 
