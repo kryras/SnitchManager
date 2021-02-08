@@ -5,7 +5,6 @@
     </div>
 
     <Modal v-if="showModal" @close="showModal = !showModal" :title="title">
-
       <ManagerFormAddDenunciation
         @updateData="fetchData"
         @closeModal="showModal = !showModal"
@@ -69,8 +68,6 @@ export default {
   },
   methods: {
     async fetchData() {
-
-
       await snitchRepository
         .get()
         .then(response => {
@@ -83,8 +80,6 @@ export default {
         .finally(() => (this.loading = false));
     },
     async fetchDataById(e) {
-   
-
       await snitchRepository
         .getById(e)
         .then(response => {
@@ -109,9 +104,11 @@ export default {
 
 <style  scoped lang="scss">
 .denunciation-container {
-  width: 100%;
   max-width: 1100px;
   margin: auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
 }
 
 .button {

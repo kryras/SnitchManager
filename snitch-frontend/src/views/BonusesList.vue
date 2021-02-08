@@ -102,9 +102,11 @@ export default {
 
 <style scoped lang="scss">
 .bonus-container {
-  width: 100%;
   max-width: 1100px;
   margin: auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
 }
 
 .button {

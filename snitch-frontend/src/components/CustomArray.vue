@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <h2>{{ title }}</h2>
-    <input type="text" placeholder="Search" v-model="search" />
-    {{ search }}
+  <div class="customArray-container">
+    <input
+      type="text"
+      placeholder="Start typing to search..."
+      v-model="search"
+      class="input"
+    />
     <table class="table">
       <thead>
         <tr>
@@ -10,6 +13,9 @@
             <span class="table__column-name" @click="sortByColumn(key)">
               {{ key }}</span
             >
+          </th>
+          <th v-if="true">
+            <span class="table__edit">-</span>
           </th>
         </tr>
       </thead>
@@ -20,7 +26,7 @@
             {{ listElement?.[column] }}
           </td>
           <td v-if="true">
-            <span @click="editEntry(listElement?.id)" class="table-edit"
+            <span @click="editEntry(listElement?.id)" class="table__edit"
               >EDIT</span
             >
           </td>
@@ -121,21 +127,61 @@ export default {
 </script>
 
 <style  scoped lang="scss">
-table,
-th,
-td {
-  border: 1px solid black;
+.customArray-container {
+  width: 100%;
 }
 
-.table {
-  &-edit {
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  &.table {
+    margin-top: 16px;
+    margin-right: 0;
+    width: 100%;
+    font-size: $regular-font-size;
+    @media (max-width: $mobile-max-width) {
+      width: 95%;
+      margin: auto;
+    }
+  }
+
+  .table__column-name,
+  .table__edit {
     cursor: pointer;
-    font-size: bold;
-    // background: red;
   }
 }
 
-.table__column-name {
-  cursor: pointer;
+th {
+  text-transform: capitalize;
+}
+
+td,
+tr {
+  border: solid 2px $solid-border-color;
+  border-style: solid none;
+  padding: 14px;
+}
+
+td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.input {
+  @include create-input(
+    $border-size,
+    $border-radius,
+    $input-gradient,
+    100%,
+    $height
+  );
+  margin-top: 16px;
 }
 </style>
