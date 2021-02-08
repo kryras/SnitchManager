@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Data
-public class UserVM {
+public class UserRankingVM {
 
     private String firstName;
     private String lastName;
@@ -17,7 +17,7 @@ public class UserVM {
     private int snitchCount;
     private int victimCount;
 
-    public UserVM(User user) {
+    public UserRankingVM(User user) {
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(new Date());

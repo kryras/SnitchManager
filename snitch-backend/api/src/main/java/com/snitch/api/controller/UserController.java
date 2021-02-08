@@ -1,16 +1,15 @@
 package com.snitch.api.controller;
 
 import com.snitch.api.service.IUserService;
-import com.snitch.api.viewmodels.UserVM;
+import com.snitch.api.viewmodels.UserAdminListVM;
+import com.snitch.api.viewmodels.UserRankingVM;
+import com.snitch.entities.model.Role;
+import com.snitch.entities.model.SnitchType;
 import com.snitch.entities.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,19 +25,31 @@ public class UserController {
 
     @GetMapping("/ranking")
     @PreAuthorize("hasRole('USER') || hasRole('MANAGER') || hasRole('ADMIN')")
-    public List<UserVM> getEmployeeList() {
+    public List<UserRankingVM> getEmployeeList() {
         return userService.getEmployeeList();
     }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public List<User> getUserList() {
+    public List<UserAdminListVM> getUserList() {
         return userService.getUserList();
+    }
+
+    @GetMapping("/role")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Role> getRoleList() {
+        return userService.getRoles();
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public User getUser(@PathVariable("id") long id) throws NotFoundException {
         return userService.getUser(id);
+    }
+
+    @PostMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void getUser(@PathVariable("id") Long userId, @RequestBody Long roleId) {
+        userService.updateRole(userId, roleId);
     }
 }
