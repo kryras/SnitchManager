@@ -2,13 +2,11 @@ package com.snitch.api.controller;
 
 import com.snitch.api.service.ISnitchService;
 import com.snitch.api.viewmodels.NamedListVM;
+import com.snitch.api.viewmodels.SnitchCreateVM;
 import com.snitch.api.viewmodels.SnitchVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,12 @@ public class SnitchController {
     @PreAuthorize("hasRole('USER') || hasRole('MANAGER') || hasRole('ADMIN')")
     public List<SnitchVM> getSnitchList(){
         return snitchService.getSnitchList();
+    }
+
+    @PostMapping
+    @PreAuthorize("hasRole('MANAGER') || hasRole('ADMIN')")
+    public void saveSnitchList(@RequestBody SnitchCreateVM snitchVM){
+        snitchService.saveSnitch(snitchVM);
     }
 
     @GetMapping("/bonus")

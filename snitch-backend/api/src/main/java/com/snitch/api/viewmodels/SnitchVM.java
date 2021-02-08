@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class SnitchVM {
 
+    private Long id;
     private String who;
     private Date when;
     private String type;
@@ -17,6 +18,7 @@ public class SnitchVM {
     private int points;
 
     public SnitchVM(Snitch snitch){
+        this.id = snitch.getId();
         this.who = snitch.getSnitchId().getFirstName() + " " + snitch.getSnitchId().getLastName();
         this.when = snitch.getDate();
         this.type = snitch.getSnitchType().getName();
