@@ -81,7 +81,7 @@ public class SnitchServiceImpl implements ISnitchService {
     public SnitchCreateVM getSnitch(Long id) throws NotFoundException {
         Snitch temp = snitchRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
         SnitchCreateVM result = new SnitchCreateVM();
-        result.setSnitchId(temp.getId());
+        result.setId(temp.getId());
         result.setVictimId(temp.getVictimId().getId());
         result.setSnitchId(temp.getSnitchId().getId());
         result.setTypeId(temp.getSnitchType().getId());
