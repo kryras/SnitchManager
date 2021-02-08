@@ -29,7 +29,7 @@ public class SnitchController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') || hasRole('MANAGER')")
-    public Snitch getSnitch(@PathVariable("id") long id) throws NotFoundException {
+    public SnitchCreateVM getSnitch(@PathVariable("id") long id) throws NotFoundException {
         return snitchService.getSnitch(id);
     }
     @PostMapping

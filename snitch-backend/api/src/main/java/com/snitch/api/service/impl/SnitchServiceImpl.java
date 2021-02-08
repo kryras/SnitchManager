@@ -78,8 +78,17 @@ public class SnitchServiceImpl implements ISnitchService {
         return typeList;
     }
     @Override
-    public Snitch getSnitch(Long id) throws NotFoundException {
-        return snitchRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
+    public SnitchCreateVM getSnitch(Long id) throws NotFoundException {
+        Snitch temp = snitchRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
+        SnitchCreateVM result = new SnitchCreateVM();
+        result.setSnitchId(temp.getId());
+        result.setVictimId(temp.getVictimId().getId());
+        result.setSnitchId(temp.getSnitchId().getId());
+        result.setTypeId(temp.getSnitchType().getId());
+        List<Long> bonuses= new ArrayList<>();
+        temp.getBonuses().stream().mapToLong(Bonus::getId).forEach(bonuses::add);
+        result.setBonusIds(bonuses);
+        return result;
     }
     @Override
     public void saveSnitch(SnitchCreateVM snitchVM) {
