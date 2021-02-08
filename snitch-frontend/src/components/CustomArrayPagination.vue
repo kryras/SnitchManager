@@ -5,11 +5,15 @@
         <li class="page-item">
           <button
             type="button"
-            class="page-link"
+            class="page-link-arrow"
             v-if="page != 1"
             @click="changePage(page - 1)"
           >
-            Previous
+            <img
+              src="@/assets/wideheaded_downwards_arrow.png"
+              alt="WIDE-HEADED ARROW"
+              class="arrow left"
+            />
           </button>
         </li>
 
@@ -67,11 +71,15 @@
         <li class="page-item">
           <button
             type="button"
+            class="page-link-arrow right"
             @click="changePage(page + 1)"
             v-if="page < pages.length"
-            class="page-link"
           >
-            Next
+            <img
+              src="@/assets/wideheaded_downwards_arrow.png"
+              alt="WIDE-HEADED ARROW"
+              class="arrow right"
+            />
           </button>
         </li>
       </ul>
@@ -135,5 +143,46 @@ export default {
 };
 </script>
 
-<style  scoped lang="scss">
+<style scoped lang="scss">
+.pagination {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 16px auto;
+  ul,
+  li {
+    list-style-type: none;
+  }
+}
+
+button {
+  font-size: $regular-font-size;
+  font-family: "Maven Pro", sans-serif;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border-radius: $border-radius;
+  border: 1px solid $solid-border-color;
+  margin: 8px;
+}
+.page-link-arrow {
+  background: $input-gradient;
+  border: none;
+}
+.arrow {
+  cursor: pointer;
+  display: block;
+  width: 20px;
+  height: 25px;
+  margin: auto;
+  @media (max-width: 370px) {
+    margin: 95px auto 0;
+  }
+  &.left {
+    transform: rotate(90deg);
+  }
+  &.right {
+    transform: rotate(-90deg);
+  }
+}
 </style>
