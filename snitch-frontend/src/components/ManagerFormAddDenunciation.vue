@@ -198,12 +198,13 @@ export default {
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
-
+  
   .label {
     @include create-label(100%);
   }
 
   .input {
+    max-width: 735px;
     @include create-input(
       $border-size,
       $border-radius,
@@ -231,13 +232,15 @@ export default {
     );
     text-align: left;
   }
+
+ 
   .checkbox-label {
     margin-left: 10px;
     font-size: $regular-font-size;
     line-height: 0;
   }
   .checkbox {
-    margin: 10px auto 10px 30%;
+    margin: 10px auto 10px 15%;
     @media (max-width: $mobile-max-width) {
       margin: 10px;
     }
