@@ -10,7 +10,7 @@ public class UserAdminListVM {
     private String firstName;
     private String lastName;
     private String email;
-    private Integer roleId;
+    private String role;
 
     public UserAdminListVM(User user){
 
@@ -18,6 +18,6 @@ public class UserAdminListVM {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
-        this.roleId = user.getRoles().stream().findFirst().get().getId();
+        this.role = user.getRoles().stream().findFirst().get().getName().toString();
     }
 }
