@@ -161,6 +161,7 @@ export default {
   }
 
   .input {
+    max-width: 810px;
     @include create-input(
       $border-size,
       $border-radius,
