@@ -15,6 +15,6 @@ public interface IUserService {
     List<UserRankingVM> getEmployeeList();
     List<UserAdminListVM> getUserList();
     List<Role> getRoles();
-    void updateRole(Long userId, Long roleId);
+    void updateRole(Long userId, Integer roleId);
     List<User> getUsersWithRole(ERole ERole) throws NotFoundException;
 }

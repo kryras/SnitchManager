@@ -46,10 +46,9 @@ public class UserController {
     public UserRankingVM getUser(@PathVariable("id") long id) throws NotFoundException {
         return userService.getUser(id);
     }
-
     @PostMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void getUser(@PathVariable("id") Long userId, @RequestBody Long roleId) {
+    public void updateRole(@PathVariable("id") Long userId, @RequestParam Integer roleId) {
         userService.updateRole(userId, roleId);
     }
 }

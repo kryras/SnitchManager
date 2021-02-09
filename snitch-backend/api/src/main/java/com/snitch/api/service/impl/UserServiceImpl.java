@@ -59,12 +59,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateRole(Long userId, Long roleId) {
+    public void updateRole(Long userId, Integer roleId) {
         User user = userRepository.findById(userId).orElseThrow();
         Role role = roleRepository.findById(roleId).orElseThrow();
 
         user.getRoles().clear();
         user.getRoles().add(role);
+        userRepository.save(user);
     }
 
     @Override

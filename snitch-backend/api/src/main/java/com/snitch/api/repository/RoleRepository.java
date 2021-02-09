@@ -10,7 +10,7 @@ import com.snitch.entities.model.Role;
 import enums.ERole;
 
 @Repository
-public interface RoleRepository extends CrudRepository<Role, Long> {
+public interface RoleRepository extends CrudRepository<Role, Integer> {
     Optional<Role> getByName(ERole name);
     boolean existsByName(ERole name);
 }
