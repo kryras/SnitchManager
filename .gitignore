@@ -1,0 +1,4 @@
+snitch-backend/*
+.gradle/*
+.vscode/*
+
