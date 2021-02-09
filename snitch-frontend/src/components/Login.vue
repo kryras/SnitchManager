@@ -59,20 +59,21 @@ export default {
   },
   methods: {
     submit(user) {
-      this.$store.dispatch('auth/login', user).then(
-            () => {
-              console.log("zalogowano pomyslnie");
-            },
-            error => {
-              this.loading = false;
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-            }
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+          console.log("zalogowano pomyslnie");
+          this.$router.push("/");
+        },
+        error => {
+          this.loading = false;
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+        }
       );
-    },
-  },
+    }
+  }
 };
 </script>
 

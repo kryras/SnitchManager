@@ -233,9 +233,8 @@ export default {
   }
   .checkbox-label {
     margin-left: 10px;
-        font-size: $regular-font-size;
-        line-height: 0;
-
+    font-size: $regular-font-size;
+    line-height: 0;
   }
   .checkbox {
     margin: 10px auto 10px 30%;
@@ -257,6 +256,11 @@ export default {
       100%,
       $height
     );
+    @media (max-width: $mobile-max-width) {
+      width: 90%;
+      margin: auto;
+      margin-top: 45px;
+    }
     margin-left: auto;
     margin-right: 0px;
     margin-top: 0;

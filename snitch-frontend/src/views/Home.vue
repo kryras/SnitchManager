@@ -5,9 +5,9 @@
       <h2 class="hero__subtitle">
         Tell on your colleagues and gain extra points
       </h2>
-      <router-link class="hero__button" :to="{ name: 'LoginRegister' }">
+      <a class="hero__button" @click="redirect">
         BECOME A SNITCH TODAY!
-      </router-link>
+      </a>
       <img
         @click="scrollTo"
         src="@/assets/wideheaded_downwards_arrow.png"
@@ -46,7 +46,16 @@ export default {
       const element = document.querySelector(".steps");
       element.scrollIntoView({ behavior: "smooth" });
     },
-  },
+    redirect() {
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+
+      if (!currentUser) {
+        this.$router.push({ name: "LoginRegister" });
+      } else {
+        this.$router.push({ name: "Ranking" });
+      }
+    }
+  }
 };
 </script>
 
@@ -76,6 +85,7 @@ export default {
   }
 
   &__button {
+    cursor: pointer;
     $border-size: 5px;
     position: relative;
     text-decoration: none;

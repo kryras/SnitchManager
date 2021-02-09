@@ -18,8 +18,8 @@
         <CustomArray
           v-if="res !== null && res.length > 0"
           :data="res"
-          :title="title"
           :entriesPerPage="20"
+          :role="''"
         />
       </div>
     </section>

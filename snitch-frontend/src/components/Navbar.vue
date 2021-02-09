@@ -1,19 +1,7 @@
 <template>
   <div class="navigation__container">
-    <!-- TODO: Make language selection or delete it completely -->
-    <!-- TODO: Modify navigation to match user privileges -->
-    <nav class="language-desktop">
-      <ul>
-        <li>
-          <label for="drop-3" class="toggle">EN</label>
-          <label for="drop-3" class="toggle-desktop">EN</label>
-          <input type="checkbox" id="drop-3" />
-          <ul>
-            <li class="lang">EN</li>
-            <li class="lang">PL</li>
-          </ul>
-        </li>
-      </ul>
+    <nav class="logo  ">
+      <img src="@/assets/logo.png" alt="LOGO" class="logo" />
     </nav>
     <nav>
       <input type="checkbox" id="drop" />
@@ -30,26 +18,41 @@
           <label for="drop-1" class="toggle-desktop">denunciation</label>
           <input type="checkbox" id="drop-1" />
           <ul>
-            <li>
+            <li
+              v-if="
+                role === roleAdmin ||
+                  role === roleModerator ||
+                  role === roleUser
+              "
+            >
               <router-link :to="{ name: 'DenunciationList' }">list</router-link>
             </li>
-            <li><router-link :to="{ name: 'TypesList' }">types</router-link></li>
-            <li><router-link :to="{ name: 'BonusesList' }">bonuses</router-link></li>
+            <li>
+              <router-link :to="{ name: 'TypesList' }">types</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'BonusesList' }">bonuses</router-link>
+            </li>
           </ul>
         </li>
         <li><router-link :to="{ name: 'About' }">about</router-link></li>
-        <li class="language-mobile">
-          <label for="drop-2" class="toggle">EN</label>
-          <label for="drop-2" class="toggle-desktop">EN</label>
-          <input type="checkbox" id="drop-2" />
-          <ul>
-            <li class="lang">EN</li>
-            <li class="lang">PL</li>
-          </ul>
+        <li v-if="role === roleAdmin">
+          <router-link
+            style="text-decoration:underline;"
+            :to="{ name: 'AdminManageRoles' }"
+          >
+            manage roles
+          </router-link>
+        </li>
+
+        <li>
+          <router-link v-if="user == null" :to="{ name: 'LoginRegister' }">
+            login/register
+          </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'LoginRegister' }"
-            >login/register</router-link
+          <a v-if="user != null" style="cursor: pointer;" @click="logout"
+            >logout</a
           >
         </li>
       </ul>
@@ -58,8 +61,66 @@
 </template>
 
 <script>
+import { Role } from "@/helpers/role.js";
+
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  data() {
+    return {
+      user: null,
+      role: null
+    };
+  },
+  created() {
+    this.user = this.$store.state.auth.user;
+    if (this.user) {
+      this.role = this.user?.userRoles.toString();
+    }
+    this.$store.watch(
+      state => {
+        return this.$store.state.auth.user;
+      },
+      (newValue, oldValue) => {
+        this.user = newValue;
+        if (this.user) {
+          this.role = this.user?.userRoles.toString();
+        } else {
+          this.role = null;
+        }
+      },
+      {
+        deep: true
+      }
+    );
+  },
+  computed: {
+    roleAdmin() {
+      return Role.Admin;
+    },
+    roleModerator() {
+      return Role.Moderator;
+    },
+    roleUser() {
+      return Role.User;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout").then(
+        () => {
+          console.log("wylogowano");
+          this.$router.push({ name: "LoginRegister" });
+        },
+        error => {
+          this.loading = false;
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    }
+  }
 };
 </script>
 
@@ -155,13 +216,17 @@ li > label:after {
   content: " ▾";
 }
 
+.logo {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: auto auto auto 10px;
+}
+
 @media all and (max-width: $mobile-max-width) {
-  .language {
-    &-desktop {
+  .logo {
+    @media (max-width: $mobile-max-width) {
       display: none;
-    }
-    &-mobile {
-      display: block;
     }
   }
 

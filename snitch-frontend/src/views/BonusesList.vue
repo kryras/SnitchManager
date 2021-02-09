@@ -13,6 +13,7 @@
       />
     </Modal>
     <button
+      v-if="role === roleAdmin || role === roleModerator"
       @click="showModal = !showModal"
       class="button"
       :class="{ visible: showModal }"
@@ -33,8 +34,8 @@
         <CustomArray
           v-if="res !== null && res.length > 0"
           :data="res"
-          :title="title"
           :entriesPerPage="20"
+          :role="role"
           @editEntry="edit"
         />
       </div>
@@ -46,6 +47,8 @@
 import CustomArray from "@/components/CustomArray.vue";
 import ManagerFormAddBonus from "@/components/ManagerFormAddBonus.vue";
 import Modal from "@/components/Modal.vue";
+
+import { Role } from "@/helpers/role.js";
 
 import { repositoryFactory } from "@/services/repositoryFactory";
 const bonusesRepository = repositoryFactory.get("bonuses");
@@ -60,11 +63,44 @@ export default {
       res: null,
       errored: false,
       loading: true,
-      singleElement: null
+      singleElement: null,
+      user: null,
+      role: null
     };
   },
   created() {
     this.fetchData();
+    this.user = this.$store.state.auth.user;
+    if (this.user) {
+      this.role = this.user?.userRoles.toString();
+    }
+    this.$store.watch(
+      state => {
+        return this.$store.state.auth.user;
+      },
+      (newValue, oldValue) => {
+        this.user = newValue;
+        if (this.user) {
+          this.role = this.user?.userRoles.toString();
+        } else {
+          this.role = null;
+        }
+      },
+      {
+        deep: true
+      }
+    );
+  },
+  computed: {
+    roleAdmin() {
+      return Role.Admin;
+    },
+    roleModerator() {
+      return Role.Moderator;
+    },
+    roleUser() {
+      return Role.User;
+    }
   },
   methods: {
     async fetchData() {

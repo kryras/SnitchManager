@@ -11,7 +11,10 @@ export default {
     getById(userId) {
         return Repository.get(`${resource}/${userId}`);
     },
-    create(payload) {
-        return Repository.post(`${resource}`, payload);
+    create(userId, role) {
+        return Repository.post(`${resource}/${userId}?roleId=${role}`);
+    },
+    getRoles() {
+        return Repository.get(`${resource}/role`);
     }
 }

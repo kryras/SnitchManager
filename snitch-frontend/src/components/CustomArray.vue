@@ -14,7 +14,7 @@
               {{ key }}</span
             >
           </th>
-          <th v-if="true">
+          <th v-if="role === roleAdmin || role === roleModerator">
             <span class="table__edit">-</span>
           </th>
         </tr>
@@ -25,7 +25,7 @@
           <td v-for="column in columns" :key="column">
             {{ listElement?.[column] }}
           </td>
-          <td v-if="true">
+          <td v-if="role === roleAdmin || role === roleModerator">
             <span @click="editEntry(listElement?.id)" class="table__edit"
               >EDIT</span
             >
@@ -46,6 +46,7 @@
 import CustomArrayPagination from "@/components/CustomArrayPagination.vue";
 import _sortBy from "lodash/sortBy";
 import _toString from "lodash/toString";
+import { Role } from "@/helpers/role.js";
 
 export default {
   props: {
@@ -53,12 +54,12 @@ export default {
       type: Array,
       required: true
     },
-    title: {
-      type: String,
-      required: false
-    },
     entriesPerPage: {
       type: Number,
+      required: true
+    },
+    role: {
+      type: String,
       required: true
     }
   },
@@ -121,6 +122,15 @@ export default {
     },
     paginatedData() {
       return this.paginate(this.preparedData);
+    },
+    roleAdmin() {
+      return Role.Admin;
+    },
+    roleModerator() {
+      return Role.Moderator;
+    },
+    roleUser() {
+      return Role.User;
     }
   }
 };
@@ -183,5 +193,8 @@ td:last-child {
     $height
   );
   margin-top: 16px;
+  @media (max-width: $mobile-max-width) {
+    width: 95%;
+  }
 }
 </style>

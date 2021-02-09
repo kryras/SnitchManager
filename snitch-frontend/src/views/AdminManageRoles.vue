@@ -1,25 +1,18 @@
 <template>
-  <div class="type-container">
+  <div class="admin-container">
     <div>
-      <h1>Types list</h1>
+      <h1>{{ title }}</h1>
     </div>
 
     <Modal v-if="showModal" @close="showModal = !showModal" :title="title">
-      <ManagerFormAddType
+      <AdminFormManageRole
         @updateData="fetchData"
         @closeModal="showModal = !showModal"
         @clearEditedElement="clearEditedElement"
-        :element="singleElement"
+        :id="singleElement"
       />
     </Modal>
-    <button
-      v-if="role === roleAdmin || role === roleModerator"
-      @click="showModal = !showModal"
-      class="button"
-      :class="{ visible: showModal }"
-    >
-      ADD NEW
-    </button>
+
     <section v-if="errored">
       <h2>
         We're sorry, we're not able to retrieve this information at the moment,
@@ -35,7 +28,7 @@
           v-if="res !== null && res.length > 0"
           :data="res"
           :entriesPerPage="20"
-          :role="role"
+          :role="'ROLE_ADMIN'"
           @editEntry="edit"
         />
       </div>
@@ -45,66 +38,31 @@
 
 <script>
 import CustomArray from "@/components/CustomArray.vue";
-import ManagerFormAddType from "@/components/ManagerFormAddType.vue";
 import Modal from "@/components/Modal.vue";
-
-import { Role } from "@/helpers/role.js";
+import AdminFormManageRole from "@/components/AdminFormManageRole.vue";
 
 import { repositoryFactory } from "@/services/repositoryFactory";
-const typesRepository = repositoryFactory.get("types");
+const userRepository = repositoryFactory.get("user");
 
 export default {
-  name: "TypesList",
-  components: { CustomArray, ManagerFormAddType, Modal },
+  name: "AdminManageRole",
+  components: { CustomArray, AdminFormManageRole, Modal },
   data() {
     return {
-      title: "Type",
+      title: "Admin - Manage roles",
       showModal: false,
       res: null,
       errored: false,
       loading: true,
-      singleElement: null,
-      user: null,
-      role: null
+      singleElement: null
     };
   },
   created() {
     this.fetchData();
-    this.user = this.$store.state.auth.user;
-    if (this.user) {
-      this.role = this.user?.userRoles.toString();
-    }
-    this.$store.watch(
-      state => {
-        return this.$store.state.auth.user;
-      },
-      (newValue, oldValue) => {
-        this.user = newValue;
-        if (this.user) {
-          this.role = this.user?.userRoles.toString();
-        } else {
-          this.role = null;
-        }
-      },
-      {
-        deep: true
-      }
-    );
-  },
-  computed: {
-    roleAdmin() {
-      return Role.Admin;
-    },
-    roleModerator() {
-      return Role.Moderator;
-    },
-    roleUser() {
-      return Role.User;
-    }
   },
   methods: {
     async fetchData() {
-      await typesRepository
+      await userRepository
         .get()
         .then(response => {
           this.res = response.data;
@@ -115,19 +73,11 @@ export default {
         })
         .finally(() => (this.loading = false));
     },
-    async fetchDataById(id) {
-      await typesRepository
-        .getById(id)
-        .then(response => {
-          this.singleElement = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     async edit(e) {
-      await this.fetchDataById(e);
+      // await this.fetchDataById(e);
       this.showModal = true;
+      this.singleElement = e;
+      console.log(this.singleElement);
     },
     clearEditedElement() {
       this.singleElement = null;
@@ -137,7 +87,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.type-container {
+.admin-container {
   max-width: 1100px;
   margin: auto;
   display: flex;

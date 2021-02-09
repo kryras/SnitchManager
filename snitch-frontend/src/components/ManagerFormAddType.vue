@@ -189,6 +189,11 @@ export default {
       100%,
       $height
     );
+    @media (max-width: $mobile-max-width) {
+      width: 90%;
+      margin: auto;
+      margin-top: 59px;
+    }
     margin-left: auto;
     margin-right: 0px;
   }
