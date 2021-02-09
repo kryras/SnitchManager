@@ -45,9 +45,9 @@ export default {
   background: white;
   border-radius: $border-radius;
   overflow-y: auto;
-  z-index: 1000;
 }
 .backdrop {
+  z-index: 1000;
   top: 0;
   left: 0;
   position: fixed;

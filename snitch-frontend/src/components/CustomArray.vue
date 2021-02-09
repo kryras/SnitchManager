@@ -14,7 +14,7 @@
               {{ key }}</span
             >
           </th>
-          <th v-if="role === roleAdmin || role === roleModerator">
+          <th v-if="role === roleAdmin || role === roleModerator" id="edit">
             <span class="table__edit">-</span>
           </th>
         </tr>
@@ -139,6 +139,7 @@ export default {
 <style  scoped lang="scss">
 .customArray-container {
   width: 100%;
+
 }
 
 table {
@@ -149,6 +150,7 @@ table {
     margin-right: 0;
     width: 100%;
     font-size: $regular-font-size;
+    line-height: $regular-font-size;
     @media (max-width: $mobile-max-width) {
       width: 95%;
       margin: auto;

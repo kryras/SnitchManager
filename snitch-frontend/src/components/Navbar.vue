@@ -146,17 +146,6 @@ export default {
   display: none;
 }
 
-.language {
-  &-desktop {
-    display: block;
-    ul {
-      list-style: none;
-    }
-  }
-  &-mobile {
-    display: none;
-  }
-}
 
 .lang {
   padding: $nav-element-padding;

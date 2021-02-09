@@ -74,10 +74,8 @@ export default {
         .finally(() => (this.loading = false));
     },
     async edit(e) {
-      // await this.fetchDataById(e);
       this.showModal = true;
       this.singleElement = e;
-      console.log(this.singleElement);
     },
     clearEditedElement() {
       this.singleElement = null;

@@ -108,6 +108,10 @@ export default {
         .get()
         .then(response => {
           this.res = response.data;
+          this.res.forEach(obj => {
+            obj.when = new Date(obj.when).toLocaleString("pl-PL");
+            obj.bonus = obj.bonus.length !== 0 ? obj.bonus.join(", ") : "-";
+          });
         })
         .catch(error => {
           console.log(error);
@@ -128,7 +132,6 @@ export default {
     },
     async edit(e) {
       await this.fetchDataById(e);
-      console.log("asd", this.singleElement);
       this.showModal = true;
     },
     clearEditedElement() {
