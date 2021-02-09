@@ -11,7 +11,7 @@ import enums.ERole;
 import javassist.NotFoundException;
 
 public interface IUserService {
-    User getUser(Long id) throws NotFoundException;
+    UserRankingVM getUser(Long id) throws NotFoundException;
     List<UserRankingVM> getEmployeeList();
     List<UserAdminListVM> getUserList();
     List<Role> getRoles();

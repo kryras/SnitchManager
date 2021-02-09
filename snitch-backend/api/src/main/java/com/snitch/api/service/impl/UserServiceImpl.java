@@ -30,8 +30,9 @@ public class UserServiceImpl implements IUserService {
     private RoleRepository roleRepository;
 
     @Override
-    public User getUser(Long id) throws NotFoundException {
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
+    public UserRankingVM getUser(Long id) throws NotFoundException {
+        User temp = userRepository.findById(id).orElseThrow(() -> new NotFoundException("Nie ma! "));
+        return new UserRankingVM(temp);
     }
 
     @Override

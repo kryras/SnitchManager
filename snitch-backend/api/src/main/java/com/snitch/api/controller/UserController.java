@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public User getUser(@PathVariable("id") long id) throws NotFoundException {
+    public UserRankingVM getUser(@PathVariable("id") long id) throws NotFoundException {
         return userService.getUser(id);
     }
 
