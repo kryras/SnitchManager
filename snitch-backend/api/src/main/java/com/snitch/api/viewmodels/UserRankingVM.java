@@ -36,11 +36,10 @@ public class UserRankingVM {
             }
         }
         victimCount = 0;
-        for (Snitch ss : user.getSnitchList()) {
+        for (Snitch ss : user.getVictimList()) {
             cal1.setTime(ss.getDate());
             if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)) {
                 if (cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) {
-                    points += ss.getSnitchPoints();
                     victimCount++;
                 }
             }
