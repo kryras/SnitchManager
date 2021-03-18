@@ -13,9 +13,9 @@
 # About
 An application for collecting points for reporting on colleagues, inspired by a meme
 ## Technologies
-### Backend <a name="tech-frontend"></a>
-- SpringBoot
-- gradle
+### Backend <a name="tech-backend"></a>
+- Spring Boot
+- Gradle
 
 ### Frontend <a name="tech-frontend"></a>
 - Vue.js
@@ -23,7 +23,7 @@ An application for collecting points for reporting on colleagues, inspired by a 
 
 ## Database diagram
 
-![Database](../media/screenshots/home_page.png?raw=true)
+![Database](../media/screenshots/database.png?raw=true)
 
 # Screenshots
 
@@ -39,8 +39,8 @@ An application for collecting points for reporting on colleagues, inspired by a 
 # Run project
 ## Backend  <a name="run-backend"></a>
 You'll need:
-- Java (at least Java 8, testes with Java 11)
-- graddle
+- Java (at least Java 8, tested with Java 11)
+- Gradle
 - Any relational database
 
 Steps:
@@ -69,7 +69,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 spring.mail.properties.mail.smtp.starttls.required=true
 ```
 
-(After first run tables inside database will be created and email with initial admin password will be send to email given in `snitch.app.adminEmail`)
+(After first run tables inside database will be created and email with initial admin password will be sent to email given in `snitch.app.adminEmail`)
 
 3. Inside `snitch-backend` directory run command
 ```
