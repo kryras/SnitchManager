@@ -33,7 +33,7 @@ An application for collecting points for reporting on colleagues, inspired by a 
 | ![Home Page](../media/screenshots/home_page.png?raw=true) | ![Home Page Logged](../media/screenshots/home_logged.png?raw=true) | ![Login Register](../media/screenshots/login_register.png?raw=true) 
 | ![Denunciation list - user](../media/screenshots/denunciation_list_user.png?raw=true) | ![Denunciation list - search](../media/screenshots/denunciation_list_search.png?raw=true) | ![Denunciation list - pagination](../media/screenshots/denunciation_list_pagination.png?raw=true) 
 | ![Denunciation list - admin](../media/screenshots/denunciation_list_admin.png?raw=true) | ![Types list](../media/screenshots/types_list.png?raw=true) | ![Ranking](../media/screenshots/ranking.png?raw=true) 
-| ![Manage roles](../media/screenshots/manage_roles.png?raw=true) | ![Manage roles - popup](../media/screenshots/manage_roles_popup.png?raw=true) |  
+| ![Manage roles](../media/screenshots/manage_roles.png?raw=true) | ![Manage roles - popup](../media/screenshots/manage_roles_popup.png?raw=true) | ![Denunciation - add](../media/screenshots/denunciation_add.png?raw=true)
 
 
 # Run project
@@ -51,6 +51,7 @@ Steps:
 spring.jpa.hibernate.ddl-auto = update
 spring.jpa.show-sql = false
 spring.datasource.url = #DB ADDRESS
+spring.datasource.username = #DB USERNAME
 spring.datasource.password = #DB PASSWORD
 
 #SECURITY
