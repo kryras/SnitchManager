@@ -24,7 +24,7 @@
       </router-link>
       <a v-if="user != null" style="cursor: pointer;" @click="logout">logout</a>
     </nav>
-    <p class="footer__copyright">Copyright &copy; 2021 RST</p>
+    <p class="footer__copyright">Copyright &copy; 2021 RSS</p>
   </footer>
 </template>
 
