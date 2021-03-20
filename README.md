@@ -9,7 +9,7 @@
 - [Run project](#run-project)
   - [Backend](#run-backend)
   - [Frontend](#run-frontend)
-
+- [Credits](#credits)
 # About
 An application for collecting points for reporting on colleagues, inspired by a meme
 ## Technologies
@@ -97,3 +97,8 @@ npm run serve
 ```
 
 or use IDE
+
+# Credits <a name="credits"></a>
+- [kryras](https://github.com/kryras) - Frontend
+- [szadek97](https://github.com/szadek97) - Backend
+- [Forestf90 (Michał Śliwa)](https://github.com/Forestf90) - Backend
